@@ -69,7 +69,7 @@ function App() {
         ) : (
           !error && (
             <div className="placeholder_container">
-              <img src="/home.svg" className="placeholder" />
+              <img src="/home.svg" alt="home placeholder" className="placeholder" />
             </div>
           )
         )}
