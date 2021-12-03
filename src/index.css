@@ -46,8 +46,10 @@ legend::before {
   transition: transform 0.3s ease;
 }
 
-legend:hover::before {
-  transform: rotate(2deg);
+@media (hover) {
+  legend:hover::before {
+    transform: rotate(2deg);
+  }
 }
 
 .placeholder_container {
