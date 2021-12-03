@@ -58,7 +58,7 @@ function App() {
     <>
       <Form setInfo={setInfo} />
       <div className={`container ${!loading && 'mt-5'}`} style={loading ? { marginTop: '8rem' } : {}}>
-        {error && <Error message="We couldn't find your song or there are internet issues" />}
+        {error && <Error message="We couldn't find your song" />}
         {(answer.length !== 0 || descriptions.length !== 0) && !loading ? (
           <div className="row">
             <div className="col-12 col-md-6">{answer.length !== 0 && <Song answer={answer} />}</div>
