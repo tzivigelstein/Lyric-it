@@ -36,7 +36,7 @@ function App() {
     setLoading(true)
 
     fetchSongData({ artist, song })
-      .then(([{ lyricsData }, { descriptionData }]) => {
+      .then(([{ data: lyricsData }, { data: descriptionData }]) => {
         lyricsData.lyrics ? setAnswer(lyricsData.lyrics) : setAnswer('')
         descriptionData.artists ? setDescriptions(descriptionData.artists[0]) : setDescriptions([])
         setError(false)
