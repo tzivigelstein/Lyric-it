@@ -5,7 +5,7 @@ const fetchSongData = async ({ artist, song }) => {
   const parsedSong = song.toLowerCase()
 
   const urlLyrics = `https://api.lyrics.ovh/v1/${parsedArtist}/${parsedSong}`
-  const urlAudioDB = `https://www.theaudiodb.com/api/v1/json/1/search.php?s=${parsedArtist}`
+  const urlAudioDB = `https://www.theaudiodb.com/api/v1/json/2/search.php?s=${parsedArtist}`
 
   return await Promise.all([axios.get(urlLyrics), axios.get(urlAudioDB)])
 }
