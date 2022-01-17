@@ -4,7 +4,7 @@ import Error from './components/Error'
 import Form from './components/Form'
 import Song from './components/Song'
 import Info from './components/Info'
-import axios from 'axios'
+import fetchSongData from './utils/fetchSongData'
 
 function App() {
   //State de busqueda
@@ -34,24 +34,20 @@ function App() {
   useEffect(() => {
     if (Object.keys(info).length === 0) return
     setLoading(true)
-    const fetchAPI = async () => {
-      const urlLyrics = `https://api.lyrics.ovh/v1/${artist}/${song}`
-      const urlAudioDB = `https://www.theaudiodb.com/api/v1/json/1/search.php?s=${artist}`
 
-      try {
-        const [lyric, description] = await Promise.all([axios.get(urlLyrics), axios.get(urlAudioDB)])
-        lyric.data.lyrics ? setAnswer(lyric.data.lyrics) : setAnswer('')
-        description.data.artists ? setDescriptions(description.data.artists[0]) : setDescriptions([])
+    fetchSongData({ artist, song })
+      .then(([{ lyricsData }, { descriptionData }]) => {
+        lyricsData.lyrics ? setAnswer(lyricsData.lyrics) : setAnswer('')
+        descriptionData.artists ? setDescriptions(descriptionData.artists[0]) : setDescriptions([])
         setError(false)
+      })
+      .finally(() => {
         setLoading(false)
-      } catch (err) {
-        console.log('error')
+      })
+      .catch(error => {
         setError(true)
-        setLoading(false)
-      }
-    }
-
-    fetchAPI()
+        console.error(error.message)
+      })
   }, [info, artist, song])
 
   return (
