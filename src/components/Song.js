@@ -1,17 +1,17 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
-const Song = ({ answer }) => {
-  if (answer.length === 0) return null
+const Song = ({ lyrics }) => {
   return (
-    <Fragment>
+    <>
       <h2>Lyrics</h2>
-      <p className="letra">{answer}</p>
-    </Fragment>
+      <p className="letra">{lyrics}</p>
+    </>
   )
 }
 
 Song.propTypes = {
-  answer: PropTypes.string.isRequired,
+  lyrics: PropTypes.string.isRequired
 }
+
 export default Song
