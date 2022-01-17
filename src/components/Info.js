@@ -11,7 +11,7 @@ const Info = ({ descriptions }) => {
       <div className="card-header bg-primary text-light font-weight-bold">{strArtist}</div>
       <div className="card-body">
         <img src={strArtistThumb} alt="Band Logo" />
-        <p className="card-text">Genre: {strGenre}</p>
+        <p className="card-text">{strGenre}</p>
         <h2 className="card-text">Biography</h2>
         <p className="card-text">{strBiographyES}</p>
         <p className="card-text">
