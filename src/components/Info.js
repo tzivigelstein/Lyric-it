@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 const Info = ({ descriptions }) => {
   //Extrayendo valores
@@ -30,7 +29,4 @@ const Info = ({ descriptions }) => {
   )
 }
 
-Info.propTypes = {
-  descriptions: PropTypes.object.isRequired
-}
 export default Info

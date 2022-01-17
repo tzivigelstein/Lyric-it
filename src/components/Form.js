@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Error from './Error'
-import PropTypes from 'prop-types'
 
 const Form = ({ setInfo }) => {
   const [data, setData] = useState({
@@ -82,7 +81,4 @@ const Form = ({ setInfo }) => {
   )
 }
 
-Form.propTypes = {
-  setInfo: PropTypes.func.isRequired,
-}
 export default Form
