@@ -13,7 +13,7 @@ function App() {
 
   //State del resultado
 
-  const [answer, setAnswer] = useState('')
+  const [lyrics, setLyrics] = useState('')
 
   //State de la informacion de la banda
 
@@ -37,7 +37,7 @@ function App() {
 
     fetchSongData({ artist, song })
       .then(([{ data: lyricsData }, { data: descriptionData }]) => {
-        lyricsData.lyrics ? setAnswer(lyricsData.lyrics) : setAnswer('')
+        lyricsData.lyrics ? setLyrics(lyricsData.lyrics) : setLyrics('')
         descriptionData.artists ? setDescriptions(descriptionData.artists[0]) : setDescriptions([])
         setError(false)
       })
@@ -55,19 +55,25 @@ function App() {
       <Form setInfo={setInfo} />
       <div className={`container ${!loading && 'mt-5'}`} style={loading ? { marginTop: '8rem' } : {}}>
         {error && <Error message="We couldn't find your song" />}
-        {(answer.length !== 0 || descriptions.length !== 0) && !loading ? (
+        {!loading && (
           <div className="row">
-            <div className="col-12 col-md-6">{answer.length !== 0 && <Song answer={answer} />}</div>
-            <div className="col-12 col-md-6">{descriptions.length !== 0 && <Info descriptions={descriptions} />}</div>
+            {lyrics !== '' && (
+              <div className="col-12 col-md-6">
+                <Song lyrics={lyrics} />
+              </div>
+            )}
+            {descriptions.length !== 0 && (
+              <div className="col-12 col-md-6">
+                <Info descriptions={descriptions} />
+              </div>
+            )}
           </div>
-        ) : loading ? (
-          <Spinner />
-        ) : (
-          !error && (
-            <div className="placeholder_container">
-              <img src="/home.svg" alt="home placeholder" className="placeholder" />
-            </div>
-          )
+        )}
+        {loading && <Spinner />}
+        {!error && !loading && lyrics === '' && (
+          <div className="placeholder_container">
+            <img src="/home.svg" alt="home placeholder" className="placeholder" />
+          </div>
         )}
       </div>
     </>
