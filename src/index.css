@@ -53,8 +53,14 @@ legend::before {
 }
 
 .placeholder_container {
-  width: 50%;
+  width: 40%;
   margin: 0 auto;
+}
+
+@media (max-width: 480px) {
+  .placeholder_container {
+    width: 65%;
+  }
 }
 
 .placeholder {
@@ -92,10 +98,4 @@ h2 {
 }
 .fa-lastfm {
   color: #d51007;
-}
-
-@media (max-width: 480px) {
-  .placeholder_container {
-    width: 65%;
-  }
 }
