@@ -5,6 +5,7 @@ import Form from './components/Form'
 import Song from './components/Song'
 import Info from './components/Info'
 import fetchSongData from './utils/fetchSongData'
+import parseArtistData from './utils/parseArtistData'
 
 function App() {
   //State de busqueda
@@ -17,7 +18,7 @@ function App() {
 
   //State de la informacion de la banda
 
-  const [descriptions, setDescriptions] = useState([])
+  const [artistData, setArtistData] = useState([])
 
   //State de error
 
@@ -38,7 +39,7 @@ function App() {
     fetchSongData({ artist, song })
       .then(([{ data: lyricsData }, { data: descriptionData }]) => {
         lyricsData.lyrics ? setLyrics(lyricsData.lyrics) : setLyrics('')
-        descriptionData.artists ? setDescriptions(descriptionData.artists[0]) : setDescriptions([])
+        descriptionData.artists ? setArtistData(() => parseArtistData(descriptionData.artists[0])) : setArtistData([])
         setError(false)
       })
       .finally(() => {
@@ -62,9 +63,9 @@ function App() {
                 <Song lyrics={lyrics} />
               </div>
             )}
-            {descriptions.length !== 0 && (
+            {artistData.length !== 0 && (
               <div className="col-12 col-md-6">
-                <Info descriptions={descriptions} />
+                <Info artistData={artistData} />
               </div>
             )}
           </div>
