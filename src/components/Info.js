@@ -31,6 +31,6 @@ const Info = ({ descriptions }) => {
 }
 
 Info.propTypes = {
-  descriptions: PropTypes.array.isRequired,
+  descriptions: PropTypes.object.isRequired
 }
 export default Info
